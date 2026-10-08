@@ -1,28 +1,44 @@
 #include <stdio.h>
 
-int main(void)
+void swap(int * a, int * b)
 {
-    int arr[5] = {6,1,8,4,2};
     int temp;
-    int size = sizeof(arr) / sizeof(int);
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
-    for(int i = 1; i < size + 1; i++)
+void bubbleSort(int arr[], int size)
+{
+    int i,j;
+    for(i = 0; i < size - 1; i++)
     {
-        for(int j = 1; j < size  +1 -i; j++)
+        for(j = 0; j < size - 1 - i; j++)
         {
-            if(arr[j] < arr[j-1])
+            if(arr[j] > arr[j+1])
             {
-                temp = arr[j];
-                arr[j] = arr[j-1];
-                arr[j-1] = temp;
+                swap(&arr[j], &arr[j+1]);
             }
         }
     }
+}
 
-    for(int i = 0; i < size; i++) 
-        printf("%d",arr[i]);
-    printf("\n");
+int main(void)
+{
+    int arr[5] = {6,1,8,4,2};
+    int size = sizeof(arr) / sizeof(int);
+
+    for(int i = 0; i<size; i++)
+    {
+        printf("%d ", arr[i]);
+    } printf("\n");
+    
+    bubbleSort(arr, size);
+
+        for(int i = 0; i<size; i++)
+    {
+        printf("%d ", arr[i]);
+    } printf("\n");
 
     return 0;
 }
-
